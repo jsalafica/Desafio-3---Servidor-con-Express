@@ -9,8 +9,7 @@ export class ProductManager {
   async getProducts() {
     try {
       let data = await utils.readFile(this.path);
-      this.products = data;
-      return data?.length > 0 ? this.products : "aun no hay registros";
+      return data?.length > 0 ? data : [];
     } catch (error) {
       console.log(error);
     }
@@ -18,15 +17,9 @@ export class ProductManager {
 
   async getProductById(id) {
     try {
-      let data = await utils.readFile(this.path);
-      this.products = data?.length > 0 ? data : [];
-      let product = this.products.find((dato) => dato.id === id);
+      let data = await this.getProducts();
+      let product = data.find((dato) => dato.id === id);
       return product;
-      // if (product !== undefined) {
-      //   return product;
-      // } else {
-      //   return "no existe el producto solicitado";
-      // }
     } catch (error) {
       console.log(error);
     }

@@ -33,6 +33,10 @@ app.get("/products/:pid", async (req, res) => {
   }
 });
 
+app.get("/", (req, res) => {
+  return res.sendStatus(404);
+});
+
 app.listen(PORT, () => {
   console.log("Listening on port " + PORT);
 });
