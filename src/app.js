@@ -19,16 +19,16 @@ app.get("/products", async (req, res) => {
     console.log(err);
   }
 });
+
 app.get("/products/:pid", async (req, res) => {
   const { pid } = req.params;
-
   let product = await productManager.getProductById(Number(pid));
-
   if (product) {
     res.json({ message: "success", data: product });
   } else {
     res.json({
-      message: "el producto solicitado no existe",
+      message: "error",
+      data: "El producto solicitado no existe",
     });
   }
 });
